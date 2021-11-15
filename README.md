@@ -1,8 +1,8 @@
 # Task_Manager
 # Is that a Task Manager for your computer
 # This applications properties  
-# - Is can kill process 
-# - Is can start process 
+# - It's can kill process 
+# - It's can start process 
 # - You can see the CPU status
 # - You can see the RAM status
 # How is my application looks like
