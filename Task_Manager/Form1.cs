@@ -17,10 +17,8 @@ namespace Task_Manager
             Program_List();
             timer.Interval = 500;
             timer1.Interval = 30000;
-            timer2.Interval = 5000;
             timer.Start();
             timer1.Enabled = true;
-            timer2.Enabled = true;
             Task_End.Enabled = false;
         }
 
@@ -40,9 +38,9 @@ namespace Task_Manager
         {
             try
             {
-                    Process.GetProcessById(Convert.ToInt32(Task_List.SelectedItems[0].SubItems[0].Text)).Kill();
-                    Program_List();
-               
+                Process.GetProcessById(Convert.ToInt32(Task_List.SelectedItems[0].SubItems[0].Text)).Kill();
+                Program_List();
+
             }
             catch (Exception excptn)
             {
@@ -97,21 +95,10 @@ namespace Task_Manager
             chart1.Series["RAM"].Points.Clear();
         }
 
-        private void timer2_Tick(object sender, EventArgs e)
-        {
-            Task_List.Items.Clear();
-            for (int i = 0; i < Process.GetProcesses(".").Length; i++)
-            {
-                Task_List.Items.Add(Process.GetProcesses(".")[i].Id.ToString());
-                Task_List.Items[i].SubItems.Add(Process.GetProcesses(".")[i].ProcessName);
-                Task_List.Items[i].SubItems.Add(Convert.ToInt32(Math.Round(Convert.ToDecimal(Process.GetProcesses(".")[i].PrivateMemorySize64 / 1048576))) + "MB");
-            }
-            Apps_LBL.Text = "Running apps : " + Task_List.Items.Count.ToString();
-        }
-
         private void Task_List_SelectedIndexChanged(object sender, EventArgs e)
         {
             Task_End.Enabled = true;
         }
+    
     }
 }
