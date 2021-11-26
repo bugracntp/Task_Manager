@@ -22,25 +22,28 @@ namespace Task_Manager
             Task_End.Enabled = false;
         }
 
+        private Process[] proc;
+
         private void Program_List()
         {
+            proc = Process.GetProcesses();
             Task_List.Items.Clear();
-            for (int i = 0; i < Process.GetProcesses(".").Length; i++)
+            for (int i = 0; i < proc.Length; i++)
             {
-                Task_List.Items.Add(Process.GetProcesses(".")[i].Id.ToString());
-                Task_List.Items[i].SubItems.Add(Process.GetProcesses(".")[i].ProcessName);
-                Task_List.Items[i].SubItems.Add(Convert.ToInt32(Math.Round(Convert.ToDecimal(Process.GetProcesses(".")[i].PrivateMemorySize64 / 1048576))) + "MB");
+                Task_List.Items.Add(proc[i].Id.ToString());
+                Task_List.Items[i].SubItems.Add(proc[i].ProcessName);
+                Task_List.Items[i].SubItems.Add(Convert.ToInt32(Math.Round(Convert.ToDecimal(proc[i].PrivateMemorySize64 / 1048576))) + "MB");
             }
             Apps_LBL.Text = "Running apps : " + Task_List.Items.Count.ToString();
         }
 
+        // killing process
         private void Task_End_Click(object sender, EventArgs e)
         {
             try
             {
                 Process.GetProcessById(Convert.ToInt32(Task_List.SelectedItems[0].SubItems[0].Text)).Kill();
                 Program_List();
-
             }
             catch (Exception excptn)
             {
@@ -48,6 +51,7 @@ namespace Task_Manager
             }
         }
 
+        // starting process
         private void Start_BTN_Click(object sender, EventArgs e)
         {
             if (Start_PNL.Visible)
@@ -99,6 +103,22 @@ namespace Task_Manager
         {
             Task_End.Enabled = true;
         }
-    
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            proc = Process.GetProcesses();
+            Task_List.Items.Clear();
+            int i = 0;
+            foreach (Process p in proc)
+            {
+                if (p.ProcessName == searchTxt.Text)
+                {
+                    Task_List.Items.Add(p.Id.ToString());
+                    Task_List.Items[i].SubItems.Add(p.ProcessName);
+                    Task_List.Items[i].SubItems.Add(Convert.ToInt32(Math.Round(Convert.ToDecimal(p.PrivateMemorySize64 / 1048576))) + "MB");
+                    i++;
+                }
+            }
+        }
     }
 }

@@ -34,6 +34,7 @@ namespace Task_Manager
             System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.pRAM = new System.Diagnostics.PerformanceCounter();
             this.pCPU = new System.Diagnostics.PerformanceCounter();
             this.timer = new System.Windows.Forms.Timer(this.components);
@@ -49,7 +50,6 @@ namespace Task_Manager
             this.ID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Pname = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.memory = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.image = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Start_BTN = new MetroFramework.Controls.MetroButton();
             this.Task_End = new MetroFramework.Controls.MetroButton();
             this.memory_LBL = new MetroFramework.Controls.MetroLabel();
@@ -57,6 +57,8 @@ namespace Task_Manager
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.x = new MetroFramework.Controls.MetroButton();
+            this.searchTxt = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pRAM)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pCPU)).BeginInit();
             this.Start_PNL.SuspendLayout();
@@ -82,7 +84,7 @@ namespace Task_Manager
             // metroProgressBar_Memory
             // 
             this.metroProgressBar_Memory.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.metroProgressBar_Memory.Location = new System.Drawing.Point(454, 279);
+            this.metroProgressBar_Memory.Location = new System.Drawing.Point(478, 299);
             this.metroProgressBar_Memory.Name = "metroProgressBar_Memory";
             this.metroProgressBar_Memory.Size = new System.Drawing.Size(249, 34);
             this.metroProgressBar_Memory.TabIndex = 10;
@@ -90,7 +92,7 @@ namespace Task_Manager
             // metroProgressBar_CPU
             // 
             this.metroProgressBar_CPU.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.metroProgressBar_CPU.Location = new System.Drawing.Point(454, 343);
+            this.metroProgressBar_CPU.Location = new System.Drawing.Point(478, 377);
             this.metroProgressBar_CPU.Name = "metroProgressBar_CPU";
             this.metroProgressBar_CPU.Size = new System.Drawing.Size(246, 34);
             this.metroProgressBar_CPU.TabIndex = 11;
@@ -98,7 +100,7 @@ namespace Task_Manager
             // metroLabel1
             // 
             this.metroLabel1.AutoSize = true;
-            this.metroLabel1.Location = new System.Drawing.Point(455, 320);
+            this.metroLabel1.Location = new System.Drawing.Point(478, 354);
             this.metroLabel1.Name = "metroLabel1";
             this.metroLabel1.Size = new System.Drawing.Size(36, 20);
             this.metroLabel1.TabIndex = 12;
@@ -108,7 +110,7 @@ namespace Task_Manager
             // 
             this.metroLabel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.metroLabel2.AutoSize = true;
-            this.metroLabel2.Location = new System.Drawing.Point(454, 257);
+            this.metroLabel2.Location = new System.Drawing.Point(478, 276);
             this.metroLabel2.Name = "metroLabel2";
             this.metroLabel2.Size = new System.Drawing.Size(62, 20);
             this.metroLabel2.TabIndex = 13;
@@ -127,7 +129,7 @@ namespace Task_Manager
             // 
             this.Apps_LBL.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.Apps_LBL.AutoSize = true;
-            this.Apps_LBL.Location = new System.Drawing.Point(600, 569);
+            this.Apps_LBL.Location = new System.Drawing.Point(639, 659);
             this.Apps_LBL.Name = "Apps_LBL";
             this.Apps_LBL.Size = new System.Drawing.Size(114, 20);
             this.Apps_LBL.TabIndex = 14;
@@ -141,7 +143,7 @@ namespace Task_Manager
             this.Start_PNL.HorizontalScrollbarBarColor = true;
             this.Start_PNL.HorizontalScrollbarHighlightOnWheel = false;
             this.Start_PNL.HorizontalScrollbarSize = 10;
-            this.Start_PNL.Location = new System.Drawing.Point(455, 170);
+            this.Start_PNL.Location = new System.Drawing.Point(478, 153);
             this.Start_PNL.Name = "Start_PNL";
             this.Start_PNL.Size = new System.Drawing.Size(284, 74);
             this.Start_PNL.TabIndex = 15;
@@ -185,13 +187,12 @@ namespace Task_Manager
             this.Task_List.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.ID,
             this.Pname,
-            this.memory,
-            this.image});
+            this.memory});
             this.Task_List.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.Task_List.ForeColor = System.Drawing.Color.Black;
+            this.Task_List.ForeColor = System.Drawing.Color.Beige;
             this.Task_List.FullRowSelect = true;
             this.Task_List.GridLines = true;
-            this.Task_List.Location = new System.Drawing.Point(5, 63);
+            this.Task_List.Location = new System.Drawing.Point(9, 153);
             this.Task_List.Name = "Task_List";
             this.Task_List.OwnerDraw = true;
             this.Task_List.Size = new System.Drawing.Size(443, 526);
@@ -204,23 +205,19 @@ namespace Task_Manager
             // ID
             // 
             this.ID.Text = "ID";
-            this.ID.Width = 85;
+            this.ID.Width = 77;
             // 
             // Pname
             // 
             this.Pname.Text = "Program Name";
             this.Pname.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.Pname.Width = 240;
+            this.Pname.Width = 184;
             // 
             // memory
             // 
             this.memory.Text = "Memory";
             this.memory.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.memory.Width = 177;
-            // 
-            // image
-            // 
-            this.image.Text = "Icons";
+            this.memory.Width = 191;
             // 
             // Start_BTN
             // 
@@ -228,9 +225,9 @@ namespace Task_Manager
             this.Start_BTN.DisplayFocus = true;
             this.Start_BTN.FontSize = MetroFramework.MetroButtonSize.Tall;
             this.Start_BTN.FontWeight = MetroFramework.MetroButtonWeight.Regular;
-            this.Start_BTN.Location = new System.Drawing.Point(454, 118);
+            this.Start_BTN.Location = new System.Drawing.Point(627, 98);
             this.Start_BTN.Name = "Start_BTN";
-            this.Start_BTN.Size = new System.Drawing.Size(287, 42);
+            this.Start_BTN.Size = new System.Drawing.Size(135, 49);
             this.Start_BTN.TabIndex = 17;
             this.Start_BTN.Text = "Start";
             this.Start_BTN.UseSelectable = true;
@@ -242,9 +239,9 @@ namespace Task_Manager
             this.Task_End.DisplayFocus = true;
             this.Task_End.FontSize = MetroFramework.MetroButtonSize.Tall;
             this.Task_End.FontWeight = MetroFramework.MetroButtonWeight.Regular;
-            this.Task_End.Location = new System.Drawing.Point(454, 63);
+            this.Task_End.Location = new System.Drawing.Point(478, 98);
             this.Task_End.Name = "Task_End";
-            this.Task_End.Size = new System.Drawing.Size(288, 49);
+            this.Task_End.Size = new System.Drawing.Size(135, 49);
             this.Task_End.TabIndex = 19;
             this.Task_End.Text = "Task End";
             this.Task_End.UseSelectable = true;
@@ -253,7 +250,7 @@ namespace Task_Manager
             // memory_LBL
             // 
             this.memory_LBL.AutoSize = true;
-            this.memory_LBL.Location = new System.Drawing.Point(708, 287);
+            this.memory_LBL.Location = new System.Drawing.Point(735, 313);
             this.memory_LBL.Name = "memory_LBL";
             this.memory_LBL.Size = new System.Drawing.Size(33, 20);
             this.memory_LBL.TabIndex = 21;
@@ -262,7 +259,7 @@ namespace Task_Manager
             // cpu_LBL
             // 
             this.cpu_LBL.AutoSize = true;
-            this.cpu_LBL.Location = new System.Drawing.Point(706, 349);
+            this.cpu_LBL.Location = new System.Drawing.Point(735, 391);
             this.cpu_LBL.Name = "cpu_LBL";
             this.cpu_LBL.Size = new System.Drawing.Size(33, 20);
             this.cpu_LBL.TabIndex = 22;
@@ -275,7 +272,7 @@ namespace Task_Manager
             this.chart1.ChartAreas.Add(chartArea1);
             legend1.Name = "Legend1";
             this.chart1.Legends.Add(legend1);
-            this.chart1.Location = new System.Drawing.Point(454, 396);
+            this.chart1.Location = new System.Drawing.Point(458, 440);
             this.chart1.Name = "chart1";
             series1.ChartArea = "ChartArea1";
             series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
@@ -287,7 +284,7 @@ namespace Task_Manager
             series2.Name = "RAM";
             this.chart1.Series.Add(series1);
             this.chart1.Series.Add(series2);
-            this.chart1.Size = new System.Drawing.Size(288, 170);
+            this.chart1.Size = new System.Drawing.Size(328, 199);
             this.chart1.TabIndex = 23;
             this.chart1.Text = "chart1";
             // 
@@ -297,24 +294,50 @@ namespace Task_Manager
             // 
             // x
             // 
+            this.x.AutoSize = true;
+            this.x.BackColor = System.Drawing.Color.White;
+            this.x.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("x.BackgroundImage")));
+            this.x.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.x.Cursor = System.Windows.Forms.Cursors.Hand;
             this.x.DisplayFocus = true;
             this.x.FontSize = MetroFramework.MetroButtonSize.Tall;
             this.x.FontWeight = MetroFramework.MetroButtonWeight.Regular;
-            this.x.Location = new System.Drawing.Point(696, 20);
+            this.x.Location = new System.Drawing.Point(728, 14);
             this.x.Name = "x";
-            this.x.Size = new System.Drawing.Size(42, 25);
+            this.x.Size = new System.Drawing.Size(34, 35);
             this.x.TabIndex = 20;
-            this.x.Text = "✖";
+            this.x.UseCustomBackColor = true;
+            this.x.UseCustomForeColor = true;
             this.x.UseSelectable = true;
+            this.x.UseStyleColors = true;
             this.x.Click += new System.EventHandler(this.çıkışToolStripMenuItem_Click);
+            // 
+            // searchTxt
+            // 
+            this.searchTxt.Location = new System.Drawing.Point(77, 98);
+            this.searchTxt.Multiline = true;
+            this.searchTxt.Name = "searchTxt";
+            this.searchTxt.Size = new System.Drawing.Size(187, 25);
+            this.searchTxt.TabIndex = 25;
+            this.searchTxt.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(6, 101);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(65, 17);
+            this.label1.TabIndex = 26;
+            this.label1.Text = "Search : ";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(753, 595);
+            this.ClientSize = new System.Drawing.Size(791, 690);
             this.ControlBox = false;
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.searchTxt);
             this.Controls.Add(this.chart1);
             this.Controls.Add(this.cpu_LBL);
             this.Controls.Add(this.memory_LBL);
@@ -329,7 +352,6 @@ namespace Task_Manager
             this.Controls.Add(this.metroProgressBar_CPU);
             this.Controls.Add(this.metroProgressBar_Memory);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.MaximumSize = new System.Drawing.Size(753, 595);
             this.MinimumSize = new System.Drawing.Size(753, 595);
             this.Name = "Form1";
             this.Text = "Task Manager";
@@ -367,7 +389,8 @@ namespace Task_Manager
         private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
         private System.Windows.Forms.Timer timer1;
         private MetroFramework.Controls.MetroButton x;
-        private System.Windows.Forms.ColumnHeader image;
+        private System.Windows.Forms.TextBox searchTxt;
+        private System.Windows.Forms.Label label1;
     }
 }
 
