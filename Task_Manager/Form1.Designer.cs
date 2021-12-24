@@ -30,10 +30,10 @@ namespace Task_Manager
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.pRAM = new System.Diagnostics.PerformanceCounter();
             this.pCPU = new System.Diagnostics.PerformanceCounter();
@@ -175,7 +175,7 @@ namespace Task_Manager
             this.APP_Path_TXT.SelectionLength = 0;
             this.APP_Path_TXT.SelectionStart = 0;
             this.APP_Path_TXT.ShortcutsEnabled = true;
-            this.APP_Path_TXT.Size = new System.Drawing.Size(232, 23);
+            this.APP_Path_TXT.Size = new System.Drawing.Size(262, 23);
             this.APP_Path_TXT.TabIndex = 15;
             this.APP_Path_TXT.UseSelectable = true;
             this.APP_Path_TXT.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
@@ -268,22 +268,22 @@ namespace Task_Manager
             // chart1
             // 
             this.chart1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            chartArea1.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.chart1.Legends.Add(legend1);
+            chartArea2.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.chart1.Legends.Add(legend2);
             this.chart1.Location = new System.Drawing.Point(458, 440);
             this.chart1.Name = "chart1";
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series1.Legend = "Legend1";
-            series1.Name = "CPU";
-            series2.ChartArea = "ChartArea1";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series2.Legend = "Legend1";
-            series2.Name = "RAM";
-            this.chart1.Series.Add(series1);
-            this.chart1.Series.Add(series2);
+            series3.ChartArea = "ChartArea1";
+            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series3.Legend = "Legend1";
+            series3.Name = "CPU";
+            series4.ChartArea = "ChartArea1";
+            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series4.Legend = "Legend1";
+            series4.Name = "RAM";
+            this.chart1.Series.Add(series3);
+            this.chart1.Series.Add(series4);
             this.chart1.Size = new System.Drawing.Size(328, 199);
             this.chart1.TabIndex = 23;
             this.chart1.Text = "chart1";
@@ -302,9 +302,9 @@ namespace Task_Manager
             this.x.DisplayFocus = true;
             this.x.FontSize = MetroFramework.MetroButtonSize.Tall;
             this.x.FontWeight = MetroFramework.MetroButtonWeight.Regular;
-            this.x.Location = new System.Drawing.Point(728, 14);
+            this.x.Location = new System.Drawing.Point(735, 18);
             this.x.Name = "x";
-            this.x.Size = new System.Drawing.Size(34, 35);
+            this.x.Size = new System.Drawing.Size(34, 30);
             this.x.TabIndex = 20;
             this.x.UseCustomBackColor = true;
             this.x.UseCustomForeColor = true;
@@ -319,7 +319,7 @@ namespace Task_Manager
             this.searchTxt.Name = "searchTxt";
             this.searchTxt.Size = new System.Drawing.Size(187, 25);
             this.searchTxt.TabIndex = 25;
-            this.searchTxt.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.searchTxt.TextChanged += new System.EventHandler(this.searchTxt_TextChanged);
             // 
             // label1
             // 

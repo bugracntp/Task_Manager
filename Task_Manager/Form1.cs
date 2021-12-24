@@ -24,6 +24,7 @@ namespace Task_Manager
 
         private Process[] proc;
 
+        // programs listing
         private void Program_List()
         {
             proc = Process.GetProcesses();
@@ -104,19 +105,28 @@ namespace Task_Manager
             Task_End.Enabled = true;
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
+
+        // search bar
+        private void searchTxt_TextChanged(object sender, EventArgs e)
         {
             proc = Process.GetProcesses();
             Task_List.Items.Clear();
             int i = 0;
-            foreach (Process p in proc)
+            if (searchTxt.Text == "")
             {
-                if (p.ProcessName == searchTxt.Text)
+                Program_List();
+            }
+            else
+            {
+                foreach (Process p in proc)
                 {
-                    Task_List.Items.Add(p.Id.ToString());
-                    Task_List.Items[i].SubItems.Add(p.ProcessName);
-                    Task_List.Items[i].SubItems.Add(Convert.ToInt32(Math.Round(Convert.ToDecimal(p.PrivateMemorySize64 / 1048576))) + "MB");
-                    i++;
+                    if (p.ProcessName == searchTxt.Text)
+                    {
+                        Task_List.Items.Add(p.Id.ToString());
+                        Task_List.Items[i].SubItems.Add(p.ProcessName);
+                        Task_List.Items[i].SubItems.Add(Convert.ToInt32(Math.Round(Convert.ToDecimal(p.PrivateMemorySize64 / 1048576))) + "MB");
+                        i++;
+                    }
                 }
             }
         }
